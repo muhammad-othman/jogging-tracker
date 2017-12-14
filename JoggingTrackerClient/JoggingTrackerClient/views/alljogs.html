@@ -1,0 +1,107 @@
+<div class="box-body">
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label for="forDate" class="col-sm-3 control-label">Date</label>
+                            <div class="col-sm-9">
+                                <input class="form-control" type="text" id="datepicker" ng-model="currentJog.date">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="forDistance" class="col-sm-3 control-label">Distance (m)</label>
+                            <div class="col-sm-9">
+                                <input required type="number" name="distance" class="form-control" id="forDistance" placeholder="Distance" ng-model="currentJog.distance">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="forTime" class="col-sm-3 control-label">Duration (m)</label>
+                            <div class="col-sm-9">
+                                <input required type="number" name="duration" class="form-control" id="forDuration" placeholder="Duration" ng-model="currentJog.duration">
+                            </div>
+                        </div>
+                        <div class="login-form-button heigt30 alert-danger">
+                            <span class="glyphicon glyphicon-warning-sign" ng-If="error!==''"></span> {{ error }}
+                        </div>
+                        <br/>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success pull-left" ng-click="saveJog()">Save</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div id='weeklyReport'>
+        <h4>Average Speed (km/h)</h4>
+        <svg height="300px">
+    </div>
+    <div id='weeklyReportDistance'>
+        <h4>Total Distance (km)</h4>
+        <svg height="300px">
+    </div>
+    <br/>
+    <table id="mytable" class="table table-striped">
+        <thead>
+            <tr class="table-head">
+                <th>User Name</th>
+                <th>Date</th>
+                <th>Distance (meter)</th>
+                <th>Duration (m)</th>
+                <th>Average Speed (km/h)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="jog in myJogs">
+                <td>{{jog.userName}}</td>
+                <td>{{jog.date}}</td>
+                <td>{{jog.distance}}</td>
+                <td>{{jog.duration}}</td>
+                <td>{{jog.average}}</td>
+                <td>
+                    <button type="button" class="btn btn-primary" ng-click="updateJog(jog)">Update</button>
+                    <button type="button" class="btn btn-danger" ng-click="deleteJog(jog.id)">Remove</button>
+                </td>
+            </tr>
+        </tbody>
+        <ul uib-pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()"></ul>
+        <div class='row'>
+            <br>
+            <div class="form-group col-sm-4">
+                <label for="forDate" class="col-sm-2 control-label">From</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="text" id="fromdatepicker">
+                </div>
+            </div>
+            <div class="form-group col-sm-4">
+                <label for="forDate" class="col-sm-2 control-label">To</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="text" id="todatepicker">
+                </div>
+            </div>
+            <button type="button" class="btn btn-info" ng-click="filter()">Filter Joggings</button>
+            <button type="button" class="btn btn-default" ng-click="reset()">Reset</button>
+        </div>
+    </table>
+    <div class="modal fade" id="pickDates" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Can't Get Joggings</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Please pick from and two dates</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

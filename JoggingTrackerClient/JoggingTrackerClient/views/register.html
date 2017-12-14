@@ -1,0 +1,38 @@
+﻿<div class="container">
+   <br/>
+    <div class="row col-xs-6">
+    <form name="registeredUser" ng-submit="register()" novalidate>
+      
+        <div class="form-group" ng-class="{ 'has-error' : registeredUser.userName.$invalid && !registeredUser.userName.$pristine }">
+            <label>User Name</label>
+            <input type="text" name="userName" class="form-control" ng-model="user.userName" ng-minlength="5" required>
+            <p ng-show="registeredUser.userName.$error.minlength" class="help-block">User Name should be atleast 5 characters.</p>
+        </div>
+        
+        <div class="form-group" ng-class="{ 'has-error' : registeredUser.email.$invalid && !registeredUser.email.$pristine }">
+            <label>Email</label>
+            <input type="email" name="email" class="form-control" ng-model="user.email" required>
+            <p ng-show="registeredUser.email.$invalid && !registeredUser.email.$pristine" class="help-block">Enter a valid email.</p>
+        </div>
+        
+        <div class="form-group" ng-class="{ 'has-error' : registeredUser.password.$invalid && !registeredUser.password.$pristine }">
+            <label>Password</label>
+            <input type="password" name="password" class="form-control" ng-model="user.password" ng-minlength="8" required>
+            <p ng-show="registeredUser.password.$invalid && !registeredUser.password.$pristine" class="help-block">Password should be atleast 8 characters.</p>
+        </div>
+         <div class="form-group" ng-class="{ 'has-error' : user.password2 != user.password }">
+            <label>Confirm Password</label>
+            <input type="password" name="password2" class="form-control" ng-model="user.password2"  >
+            <p ng-show="user.password2 != user.password" class="help-block">Passwords doesn't match.</p>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error' : registeredUser.age.$error.min }">
+            <label>Age</label>
+            <input type="number" name="age" class="form-control" ng-model="user.age" min="10" required>
+            <p ng-show="registeredUser.age.$error.min" class="help-block">Check your Age.</p>
+        </div>
+
+        <button type="submit" class="btn btn-primary" ng-disabled="registeredUser.$invalid">Register</button>
+        <a href="#/login">Login</a>
+    </form>
+</div>
+</div>

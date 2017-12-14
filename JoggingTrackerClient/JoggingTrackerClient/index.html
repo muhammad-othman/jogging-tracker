@@ -1,0 +1,66 @@
+﻿<!doctype html>
+<html lang="en" ng-app="jogging-tracker">
+
+<head>
+    <base href="/">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Jogging Tracker</title>
+    <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/jquery/jquery-ui.theme.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/jquery/jquery-ui.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/app.css">
+</head>
+
+<body ng-cloak>
+    <nav class="navbar navbar-default navbar-static-top" ng-cloak>
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Jogging Tracker</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li ng-if="!$root.user"><a href="/login">Login</a></li>
+                    <li ng-if="!$root.user"><a href="/register">Register</a></li>
+                    <li ng-if="$root.user" id="jogginglink"><a href="/jogging">Jogging</a></li>
+                    <li ng-if="$root.user && ($root.user.permission == 'Manager' ||$root.user.permission == 'Admin')" id="userslink"><a href="/users">Users</a></li>
+                    <li ng-if="$root.user && $root.user.permission == 'Admin'" id="jogslink"><a href="/alljogs">All Jogs</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li ng-if="$root.user" </li>
+                        <li ng-if="$root.user"><a href="/jogging">Wellcome {{$root.user.userName}}</a></li>
+                        <li ng-if="$root.user"><a href="/logout">Logout</a></li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </nav>
+    <div class="container" ng-view="">
+    </div>
+    <!-- /container -->
+    <script type="text/javascript" src="/js/lib/jquery/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/lib/angularjs/angular.min.js"></script>
+    <script type="text/javascript" src="/js/lib/angularjs/angular-route.min.js"></script>
+    <script type="text/javascript" src="/bootstrap/js/ui-bootstrap-tpls-2.5.0.min.js"></script>
+    <script type="text/javascript" src="/js/lib/jquery/jquery-ui.min.js"></script>
+    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/nvd3/1.1.13-beta/nv.d3.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/nvd3/1.1.13-beta/nv.d3.css">
+
+    <script type="text/javascript" src="/app.js"></script>
+    <script type="text/javascript" src="controllers/Login.controller.js"></script>
+    <script type="text/javascript" src="controllers/Jogging.controller.js"></script>
+    <script type="text/javascript" src="controllers/Users.controller.js"></script>
+    <script type="text/javascript" src="controllers/AllJogs.controller.js"></script>
+    <script type="text/javascript" src="controllers/Register.controller.js"></script>
+</body>
+
+</html>
